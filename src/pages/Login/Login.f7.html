@@ -60,7 +60,6 @@
   import {objectToString, StringToObject} from '../../helper'
   import {servers} from "./servers";
 
-
   export default {
 
 
@@ -84,25 +83,41 @@
 
         let dni = $('#dni').val();
 
+        let url_server = `http://${servers[2].ipServidor}:${servers[2].puertoServidor}/api`;
 
         if (!dni || dni.trim() == '') {
-          app.dialog.alert('Falta Ingresar la DNI.');
+          app.dialog.alert('Debe ingresar un DNI.');
           return;
         }
 
         app.dialog.preloader('Iniciando sessión...');
-
+/*
         if (dni == '1234567') {
           app.dialog.close();
           router.navigate('/menu/', {pushState: true});
-        }
+        }*/
 
+        $.get(`${url_server}/personaldni/${dni}`, function(data) {
+          if ($.isEmptyObject(data))
+          {
+            app.dialog.alert("No se pudo encontrar el usuario.");
+          }
+          else
+          {
+            localStorage.setItem('usuariopersonal', objectToString(data))
+            router.navigate('/menu/', {pushState: true});
+          }
+        })
+        .fail(function() {
+          app.dialog.alert( "Se encontró un problema en la conexión." );
+        })
+        .always(function() {
+          app.dialog.close();
+        });
 
       }
 
-
     }
-
 
   }
 </script>

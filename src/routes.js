@@ -4,7 +4,7 @@ import $ from 'jquery'
 import Login from './pages/Login/Login.f7.html';
 import Menu from './pages/Menu/Menu.f7.html';
 import ActividadesCampo from './pages/ActividadesCampo/ActividadesCampo.f7.html';
-import IngresoSalidaMTC from './pages/IngresoMTC/IngresoMTC.f7.html';
+import IngresoMTC from './pages/IngresoMTC/IngresoMTC.f7.html';
 
 
 /*Configuracion*/
@@ -25,10 +25,9 @@ export default [
     path: '/registro-campo/',
     component: ActividadesCampo,
   },
-
   {
     path: '/registro-ingreso-salida-mtc/',
-    component: IngresoSalidaMTC,
+    component: IngresoMTC,
   },
   {
     path: '(.*)',

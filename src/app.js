@@ -88,7 +88,7 @@ const app = new Framework7({
   data: data,
   root: '#app',
   id: 'io.framework7.testapp', // App bundle ID
-  name: 'ACTIVIDADES EN CAMPO', // App name
+  name: 'DDP - AVP', // App name
   theme: 'auto', // Automatic theme detection
   touch: {
     materialRipple: false

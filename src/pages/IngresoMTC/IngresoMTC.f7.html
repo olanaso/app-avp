@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="navbar color-theme-orange">
+    <div class="navbar color-theme-red">
       <div class="navbar-inner">
         <div class="left">
           <a href="#" class="link panel-open" data-panel="left">
@@ -9,40 +9,152 @@
           </a>
         </div>
         <div class="center">
-
-          <a
-            className='flex-parent-inline btn color-blue color-white-on-active bg-transparent bg-darken10-on-hover bg-blue-on-active txt-s ml3'
-            href='#'>
-
-
-            <span>Registro de actividades de campo</span> AVP
-
-          </a>
+          <span>Reporte de ingreso-salida del MTC</span> AVP
         </div>
-
-
       </div>
     </div>
     <div class="page-content">
       <div class="block">
+        <div class="row">
+          <a class="link" href="/menu/">
+            <i class="material-icons">
+              assignment_return
+            </i>
+            <span>Regresar al menú principal</span>
+          </a>
+        </div>
 
-        <p class="row">
+        <form class="list">
+          <div class="block-title">PROFESIONAL</div>
+          <div class="list inset">
+            <ul>
+              <li class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">DNI</div>
+                  <div class="item-input-wrap">
+                    <input id="dni" name="dni" type="text" placeholder="Ingrese el DNI">
+                  </div>
+                </div>
+              </li>
+              <li class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Nombre</div>
+                  <div class="item-input-wrap">
+                    <input id="nombre" name="nombre" type="text" placeholder="Ingrese el nombre">
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
 
-          <button class="col button button-raised button-fill button-round">ACTIVIDAD EN CAMPO</button>
+          <div class="block-title">HORARIO DE INGRESO AL MTC (hacia destino)</div>
+          <div class="list inset">
+            <ul>
+              <li class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Hora de Ingreso</div>
+                  <div class="item-input-wrap input-dropdown-wrap">
+                    <select id="ingresohora" name="ingresohora" placeholder="Seleccione la hora...">
+                    </select>
+                  </div>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title item-label">Minuto de Ingreso</div>
+                  <div class="item-input-wrap input-dropdown-wrap">
+                    <select id="ingresominuto" name="ingresominuto" placeholder="Seleccione el minuto...">
+                    </select>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
 
-        </p>
-        <p class="row">
+          <div class="block-title">HORARIO DE SALIDA DEL MTC (regreso de campo)</div>
+          <div class="list inset">
+            <ul>
+              <li class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Hora de Salida</div>
+                  <div class="item-input-wrap input-dropdown-wrap">
+                    <select id="salidahora" name="salidahora" placeholder="Seleccione la hora...">
+                    </select>
+                  </div>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title item-label">Minuto de Salida</div>
+                  <div class="item-input-wrap input-dropdown-wrap">
+                    <select id="salidaminuto" name="salidaminuto" placeholder="Seleccione el minuto...">
+                    </select>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        
+          <div class="block-title">MOVILIDAD</div>
+          <div class="list inset">
+            <ul>
+              <li class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Nombre del conductor</div>
+                  <div class="item-input-wrap">
+                    <input id="nombreconductor" name="nombreconductor" type="text" placeholder="Ingrese el nombre del conductor">
+                    <span class="input-clear-button"></span>
+                  </div>
+                </div>
+              </li>
+              <li class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-title item-label">Placa del vehículo</div>
+                  <div class="item-input-wrap">
+                    <input id="placavehiculo" name="placavehiculo" type="text" placeholder="Ingrese la placa del vehículo">
+                    <span class="input-clear-button"></span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
 
-          <button class="col button button-raised button-fill button-round">INGRESO DEL MTC
-          </button>
+          <div class="block-title">DESTINO</div>
+          <div class="list inset">
+            <ul>
+              <li class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-input-wrap">
+                    <input id="destino" name="destino" type="text" placeholder="Ingrese el destino">
+                    <span class="input-clear-button"></span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
 
-        </p>
-        <p class="row">
+          <div class="block-title">OBJETO DE SALIDA</div>
+          <div class="list inset">
+            <ul>
+              <li class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-input-wrap">
+                    <input id="objetosalida" name="objetosalida" type="text" placeholder="Ingrese la finalidad de la salida">
+                    <span class="input-clear-button"></span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        
+        </form>
+        <div class="list" style="padding: 20px;">
+          <ul>
+            <li>
+              <a id="btnregistrar" @click="registraringreso" class="col button button-raised button-fill button-round">Registrar ingreso</a>
+            </li>
+          </ul>
+          <div class="block-footer">
+  
+          </div>
+        </div>
 
-          <button class="col button button-raised button-fill button-round">SALIDA DEL MTC
-          </button>
-
-        </p>
       </div>
     </div>
 
@@ -60,11 +172,76 @@
     },
     on: {
       pageInit: function (event, page) {
+
+        let config;
+
+        if(localStorage.usuariopersonal != undefined){
+          config = JSON.parse(localStorage.usuariopersonal);
+          $('#dni').val(config[0].dni);
+          $('#nombre').val(config[0].nombres_apellidos);
+        }
       }
     },
 
     methods: {
-      login() {
+      registraringreso() {
+
+        const app = this.$app;
+        const router = this.$router;
+        
+        let datos = {nombres:`${$('#nombre').val()}`,
+                    dni:`${$('#dni').val()}`,
+                    inicioactividades_area_estudio:`${$('#inicioacthora').val() + ':' + $('#inicioactminuto').val()}`,
+                    termino_actividades_area_estudio:`${$('#finacthora').val() + ':' + $('#finactminuto').val()}`,
+                    grupo_trabajo:`${$('#grupo_trabajo').val()}`,
+                    fecha:`${$('#fecha').val()}`,
+                    area_est_tramo:`${$('#tramo').val()}`,
+                    area_est_sector:`${$('#sector').val()}`,
+                    tipo_via:`${$('#tipovia').val()}`,
+                    nombre:`${$('#nombrecalle').val()}`,
+                    cuadras:`${$('#cuadras').val()}`,
+                    referencia:`${$('#referencia').val()}`,
+                    tipo_actividad:`${$('#tipoactividad').val()}`,
+                    detalle_activ:`${$('#detalleact').val()}`,
+                    equipo_utilizado:`${$('#equipo').val()}`,
+                    //equipo_utilizado:`${$('#especificar').val()}`,
+                    coordinaciones:`${$('#tipocoordinacion').val()}`,
+                    //coordinaciones:`${$('#detallecoordinacion').val()}`,
+                    otrasincidencias:`${$('#incidencias').val()}`
+                    };
+
+        let url_server = `http://${servers[2].ipServidor}:${servers[2].puertoServidor}/api`;
+        /*
+        profesional:`${$('#nombre').val()}`,
+        dni:`${$('#dni').val()}`,
+        hora_ingreso:`${$('#ingresohora').val() + ':' + $('#ingresominuto').val()}`,
+        hora_salida:`${$('#salidahora').val() + ':' + $('#salidaminuto').val()}`,
+        //movilidad:
+        destino:`${$('#destino').val()}`,
+        objeto_salida:`${$('#objetosalida').val()}`
+
+
+
+        $.post(`${url_server}/actividadcampo`, datos, function(data) { 
+          if ($.isEmptyObject(data))
+          {
+            app.dialog.alert("Se encontró problema al registrar la actividad.");
+          }
+          else
+          {
+            let txtMensaje = `Su reporte ${data.id} fue enviado con éxito.`
+            app.dialog.alert(txtMensaje, function () {
+              router.navigate('/menu/', {pushState: true});
+            });
+          }
+        })
+        .fail(function() {
+          app.dialog.alert( "Se encontró un problema en la conexión." );
+        })
+        .always(function() {
+          
+        });*/
+
       },
     }
 

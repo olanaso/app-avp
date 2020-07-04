@@ -4,5 +4,8 @@ export const servers=[
     tiempoGPS: '60'},
   {  ipServidor: '181.177.246.87',
     puertoServidor: '4000',
-    tiempoGPS: '60'}
+    tiempoGPS: '60'},
+  {  ipServidor: 'localhost',
+      puertoServidor: '3002',
+      tiempoGPS: '60'}
 ];

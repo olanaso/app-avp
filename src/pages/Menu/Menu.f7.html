@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="navbar color-theme-orange">
+    <div class="navbar color-theme-red">
       <div class="navbar-inner">
         <div class="left">
           <a href="#" class="link panel-open" data-panel="left">
@@ -8,6 +8,7 @@
             <i class="icon material-icons if-md">menu</i>
           </a>
         </div>
+        
         <div class="center">
 
           <a
@@ -25,23 +26,29 @@
     </div>
     <div class="page-content">
       <div class="block">
+        <div class="list inset">
+          <ul>
+            <li>
+              <span id="lblnombre" name="lblnombre"></span>
+            </li>
+            <li>
+              <span id="lbldni" name="lbldni"></span>
+            </li>
+            <li>
+              <span id="lblperfil" name="lblperfil"></span>
+            </li>
+          </ul>
+        </div>
+
 
         <p class="row">
-
           <button @click="irActividades" class="col button button-raised button-fill button-round">ACTIVIDAD EN CAMPO</button>
-
         </p>
         <p class="row">
-
-          <button class="col button button-raised button-fill button-round">INGRESO DEL MTC
-          </button>
-
+          <button @click="irInicio" class="col button button-raised button-fill button-round">INGRESO DEL MTC</button>
         </p>
         <p class="row">
-
-          <button class="col button button-raised button-fill button-round">SALIDA DEL MTC
-          </button>
-
+          <button class="col button button-raised button-fill button-round">SALIDA DEL MTC</button>
         </p>
       </div>
     </div>
@@ -56,18 +63,22 @@
 
   export default {
     created() {
-
-
-
       //var lc=L.control.locate({flyTo:true,}).addTo(map);
       //lc.start();
       /*Routeo de servidores*/
-
-
     },
     on: {
       pageInit: function (event, page) {
+        let config;
+        if(localStorage.usuariopersonal != undefined){
+          const app = this.$app;
 
+          config = JSON.parse(localStorage.usuariopersonal);
+
+          $('#lblnombre').text(`Hola, ${config[0].nombres_apellidos}`);
+          $('#lbldni').text(`DNI: ${config[0].dni}`);
+          $('#lblperfil').text(`Perfil: ${config[0].perfil}`);
+        }
 
       }
     },
@@ -79,8 +90,10 @@
         const router = this.$router;
         router.navigate('/registro-campo/', {pushState: true});
       },
-      irEntradaSalida() {
-
+      irInicio() {
+        const app = this.$app;
+        const router = this.$router;
+        router.navigate('/registro-ingreso-salida-mtc/', {pushState: true});
 
       },
 
