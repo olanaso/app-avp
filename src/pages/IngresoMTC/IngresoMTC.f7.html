@@ -164,6 +164,7 @@
   import './css/mapa.css';
   import $ from "jquery";
   import {objectToString, StringToObject} from '../../helper'
+  import {servers} from "../Login/servers";
 
 
   export default {
@@ -172,6 +173,25 @@
     },
     on: {
       pageInit: function (event, page) {
+        // llenar Horas
+        for(var i = 0; i <= 23; i++) {
+          var option = document.createElement('option');
+          var option2 = document.createElement('option');
+          option.textContent = (i < 10) ? ("0" + i) : i;
+          option2.textContent = (i < 10) ? ("0" + i) : i;
+          document.querySelector('#ingresohora').appendChild(option);
+          document.querySelector('#salidahora').appendChild(option2);
+          
+        }
+        // llenar Minutos
+        for(var i = 0; i <= 59; i++) {
+          var option = document.createElement('option');
+          var option2 = document.createElement('option');
+          option.textContent = (i < 10) ? ("0" + i) : i;
+          option2.textContent = (i < 10) ? ("0" + i) : i;
+          document.querySelector('#ingresominuto').appendChild(option);
+          document.querySelector('#salidaminuto').appendChild(option2);
+        }
 
         let config;
 
@@ -189,47 +209,28 @@
         const app = this.$app;
         const router = this.$router;
         
-        let datos = {nombres:`${$('#nombre').val()}`,
+        let datos = {profesionaprofesionalombres:`${$('#nombre').val()}`,
                     dni:`${$('#dni').val()}`,
-                    inicioactividades_area_estudio:`${$('#inicioacthora').val() + ':' + $('#inicioactminuto').val()}`,
-                    termino_actividades_area_estudio:`${$('#finacthora').val() + ':' + $('#finactminuto').val()}`,
-                    grupo_trabajo:`${$('#grupo_trabajo').val()}`,
-                    fecha:`${$('#fecha').val()}`,
-                    area_est_tramo:`${$('#tramo').val()}`,
-                    area_est_sector:`${$('#sector').val()}`,
-                    tipo_via:`${$('#tipovia').val()}`,
-                    nombre:`${$('#nombrecalle').val()}`,
-                    cuadras:`${$('#cuadras').val()}`,
-                    referencia:`${$('#referencia').val()}`,
-                    tipo_actividad:`${$('#tipoactividad').val()}`,
-                    detalle_activ:`${$('#detalleact').val()}`,
-                    equipo_utilizado:`${$('#equipo').val()}`,
-                    //equipo_utilizado:`${$('#especificar').val()}`,
-                    coordinaciones:`${$('#tipocoordinacion').val()}`,
-                    //coordinaciones:`${$('#detallecoordinacion').val()}`,
-                    otrasincidencias:`${$('#incidencias').val()}`
+                    hora_ingreso:`${$('#ingresohora').val() + ':' + $('#ingresominuto').val()}`,
+                    hora_salida:`${$('#salidahora').val() + ':' + $('#salidaminuto').val()}`,
+                    nombre_conductor:`${$('#nombreconductor').val()}`,
+                    placa:`${$('#placavehiculo').val()}`,
+                    destino:`${$('#destino').val()}`,
+                    objeto_salida:`${$('#objetosalida').val()}`,
+                    lat:``,
+                    lon:``
                     };
 
         let url_server = `http://${servers[2].ipServidor}:${servers[2].puertoServidor}/api`;
-        /*
-        profesional:`${$('#nombre').val()}`,
-        dni:`${$('#dni').val()}`,
-        hora_ingreso:`${$('#ingresohora').val() + ':' + $('#ingresominuto').val()}`,
-        hora_salida:`${$('#salidahora').val() + ':' + $('#salidaminuto').val()}`,
-        //movilidad:
-        destino:`${$('#destino').val()}`,
-        objeto_salida:`${$('#objetosalida').val()}`
 
-
-
-        $.post(`${url_server}/actividadcampo`, datos, function(data) { 
+        $.post(`${url_server}/ingreso`, datos, function(data) { 
           if ($.isEmptyObject(data))
           {
-            app.dialog.alert("Se encontró problema al registrar la actividad.");
+            app.dialog.alert("Se encontró problema al registrar el ingreso.");
           }
           else
           {
-            let txtMensaje = `Su reporte ${data.id} fue enviado con éxito.`
+            let txtMensaje = `Su reporte de ingreso ${data.id} fue enviado con éxito.`
             app.dialog.alert(txtMensaje, function () {
               router.navigate('/menu/', {pushState: true});
             });
@@ -240,7 +241,7 @@
         })
         .always(function() {
           
-        });*/
+        });
 
       },
     }

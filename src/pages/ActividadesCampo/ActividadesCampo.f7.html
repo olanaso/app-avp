@@ -378,7 +378,6 @@
                     otrasincidencias:`${$('#incidencias').val()}`
                     };
 
-        //app.dialog.alert(objectToString(datos));
         let url_server = `http://${servers[2].ipServidor}:${servers[2].puertoServidor}/api`;
 
         $.post(`${url_server}/actividadcampo`, datos, function(data) { 
