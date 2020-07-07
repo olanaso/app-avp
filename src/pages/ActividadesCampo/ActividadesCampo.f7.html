@@ -388,7 +388,9 @@
 
         //Revisar si hay reporte pendiente
         localStorage.setItem('actividadpendiente', 'false');
+        app.dialog.preloader('Cargando...');
         $.get(`${url_server}/actividadcampodni/${nrodni}`, function(data) {
+          app.dialog.close();
           if (!$.isEmptyObject(data))
           {
             app.dialog.confirm(`Su reporte ${data[0].id} tiene hora de termino pendiente, ¿desea finalizarlo?`, function () {
@@ -420,6 +422,7 @@
           }
         })
         .fail(function() {
+          app.dialog.close();
           app.dialog.alert( "Se encontró un problema en la conexión." );
         });
 
