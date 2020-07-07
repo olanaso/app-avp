@@ -3,7 +3,8 @@
   --f7-theme-color: #FC9E57;
   --f7-theme-color-rgb: 252, 158, 87;
   --f7-theme-color-shade: #fb872f;
-  --f7-theme-color-tint: #fdb57f;
+  /*--f7-theme-color-tint: #fdb57f;*/
+  --f7-navbar-bg-color: red;
 }
 /* Invert navigation bars to fill style */
 :root,
