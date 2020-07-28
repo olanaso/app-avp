@@ -61,6 +61,21 @@
             </ul>
           </div>
 
+          <div class="block-title">SALIDA PROGRAMADA</div>
+          <div class="list inset">
+            <ul>
+              <li class="item-content item-input">
+                <div class="item-inner">
+                  <div class="item-input-wrap input-dropdown-wrap">
+                    <select id="salida_programada" name="salida_programada" placeholder="Seleccione la salida...">
+                      <option value=""></option>
+                    </select>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
           <div class="block-title">HORARIO DE INGRESO AL MTC (hacia destino)</div>
           <div class="list inset">
             <ul>
@@ -228,8 +243,29 @@
         var minute = ("0" + (d.getMinutes())).slice(-2);
         $('#ingresominuto').val(minute);
 
-        //Revisar si hay reporte pendiente
         let url_server = `http://${servers[2].ipServidor}:${servers[2].puertoServidor}/api`;
+
+        //cargar las salidas
+        $.get(`${url_server}/listarSalidas`, function (data) {
+          if ($.isEmptyObject(data)) {
+            app.dialog.alert("No se pudo encontrar datos de salidas");
+          }
+          else {
+            $('#salida_programada').empty();
+            $('#salida_programada').append($("<option></option>").attr("value", "").text(""));
+            $.each(data, function (key, value) {
+              $('#salida_programada')
+                .append($("<option></option>")
+                  .attr("value", value.id)
+                  .text(value.denominacion + ' - ' + value.fecha + ' - ' + value.horainicio));
+            });
+          }
+        })
+          .fail(function () {
+            app.dialog.alert("Se encontró un problema en la conexión.");
+          });
+
+        //Revisar si hay reporte pendiente
         localStorage.setItem('ingresopendiente', 'false');
         app.dialog.preloader('Cargando...');
         $('#btnfinalizaringreso').attr('disabled')
@@ -251,6 +287,7 @@
               $('#placa').val(data[0].placavehiculo);
               $('#destino').val(data[0].destino);
               $('#objeto_salida').val(data[0].objetosalida);
+              $('#salida_programada').val(data[0].salida_programada);
             }, function () {
 
               router.navigate('/menu/', {pushState: true});
@@ -261,6 +298,7 @@
             app.dialog.close();
             app.dialog.alert("Se encontró un problema en la conexión.");
           });
+
       }
     },
 
@@ -295,6 +333,7 @@
                 placa: `${$('#placavehiculo').val()}`,
                 destino: `${$('#destino').val()}`,
                 objeto_salida: `${$('#objetosalida').val()}`,
+                salida_programada: `${$('#salida_programada').val()}`,
                 lat: posistion.coords.latitude,
                 lon: posistion.coords.longitude,
                 estado: false
@@ -348,6 +387,7 @@
               placa: `${$('#placavehiculo').val()}`,
               destino: `${$('#destino').val()}`,
               objeto_salida: `${$('#objetosalida').val()}`,
+              salida_programada: `${$('#salida_programada').val()}`,
               lat: posistion.coords.latitude,
               lon: posistion.coords.longitude,
               estado: false
@@ -426,6 +466,7 @@
                 placa: `${$('#placavehiculo').val()}`,
                 destino: `${$('#destino').val()}`,
                 objeto_salida: `${$('#objetosalida').val()}`,
+                salida_programada: `${$('#salida_programada').val()}`,
                 latfin: posistion.coords.latitude,
                 lonfin: posistion.coords.longitude,
                 estado: true
